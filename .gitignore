@@ -1,0 +1,5 @@
+/_logs
+/_data
+.env
+symfony/
+.idea/

@@ -101,7 +101,6 @@ services:
     traefik:
       image: traefik:v2.0
       restart: unless-stopped
-      container_name: traefik
       ports:
         - 80:80     # <== http
         - 8080:8080 # <== :8080 is where the dashboard runs on
@@ -119,7 +118,7 @@ services:
         - --providers.docker.exposedbydefault=false # <== Don't expose every container to traefik, only expose enabled ones
         - --providers.file.filename=/dynamic.yaml # <== Referring to a dynamic configuration file
         ##  Needs to have the docker-compose prefix added ie {prefix}_web
-        - --providers.docker.network=docker-multiple-sites_web # <== Operate on the docker network named web
+        - --providers.docker.network=docker-symfony-traefik_web # <== Operate on the docker network named web
         ## Entrypoints Settings - https://docs.traefik.io/routing/entrypoints/#configuration ##
         - --entrypoints.web.address=:80 # <== Defining an entrypoint for port :80 named web
         - --entrypoints.web-secured.address=:443 # <== Defining an entrypoint for https on port :443 named web-secured
